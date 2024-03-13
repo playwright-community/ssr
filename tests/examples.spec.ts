@@ -8,7 +8,6 @@ const examples = fs.readdirSync(kExamplesRootDirectory);
 
 for (const example of examples) {
   test(`example ${example} should work`, async ({  }) => {
-    test.fixme(example === 'nextjs');
     const exampleDirectory = path.join(kExamplesRootDirectory, example);
     const result = cp.spawnSync('npm', ['run', 'test'], {
       cwd: exampleDirectory,
