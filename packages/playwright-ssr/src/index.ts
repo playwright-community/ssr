@@ -1,4 +1,3 @@
-import { RemoteHttpResolverOverWS } from '../third_party/interceptors/lib/node/RemoteHttpInterceptorWS'
 import type {
   Route,
   Request as PWRequest,
@@ -11,6 +10,7 @@ import { test as base } from '@playwright/test'
 import { spawn } from 'node:child_process';
 import waitOn from 'wait-on';
 import path from 'path'
+import { RemoteHttpResolverOverWS } from "../third_party/interceptors";
 
 export type WorkerConfigOptions = {
   webServer: WebServerOptions

@@ -1,5 +1,5 @@
 // @ts-check
-const { RemoteHttpInterceptorOverWS } = require('../third_party/interceptors/lib/node/RemoteHttpInterceptorWS')
+const { RemoteHttpInterceptorOverWS } = require('../third_party/interceptors')
 
 if (process.env.PW_INTERCEPTOR_PORT) {
   console.log('(server.mjs): Applying RemoteHttpInterceptorWS')
