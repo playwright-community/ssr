@@ -1,0 +1,24 @@
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: 20
+        cache: 'npm'
+    - name: Install
+      run: |
+        npm ci
+        bash third_party/sync.sh
+    - name: Install Playwright browsers
+      run: npx playwright install --with-deps chromium
+    - name: Test
+      run: npm run test
