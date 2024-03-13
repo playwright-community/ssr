@@ -1,0 +1,20 @@
+{
+  "name": "playwright-ssr",
+  "version": "0.0.1",
+  "main": "dist/index",
+  "author": "Max Schmitt",
+  "license": "MIT",
+  "devDependencies": {
+    "@playwright/test": "^1.43.0-alpha-2024-03-13",
+    "@types/node": "^20.11.26",
+    "@types/wait-on": "^5.3.4",
+    "esbuild": "^0.20.1",
+    "typescript": "^5.4.2"
+  },
+  "dependencies": {
+    "wait-on": "^7.2.0"
+  },
+  "scripts": {
+    "build": "esbuild src/index.ts --platform=node --outfile=dist/index.js --sourcemap --format=cjs"
+  }
+}
