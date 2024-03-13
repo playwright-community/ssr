@@ -1,7 +1,7 @@
 # Playwright Server Side Request Interception
 
 > [!WARNING]
-This feature is experimental, we are actively looking for the feedback based on your scenarios.
+This project is experimental, we are actively looking for the feedback based on your scenarios.
 
 ## Usage
 
