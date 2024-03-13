@@ -1,3 +1,19 @@
+/**
+ * Copyright (c) Microsoft Corporation. All rights reserved.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 import type {
   Route,
   Request as PWRequest,
@@ -10,6 +26,7 @@ import { test as base } from '@playwright/test'
 import { spawn } from 'node:child_process';
 import waitOn from 'wait-on';
 import path from 'path'
+// @ts-ignore
 import { RemoteHttpResolverOverWS } from "../third_party/interceptors";
 
 export type WorkerConfigOptions = {
@@ -49,6 +66,7 @@ class WebServer {
       port: 0,
     })
     this._resolver.apply()
+    // @ts-ignore
     this._resolver.on('request', async ({ request, requestId }) => this._onRequest(request, requestId))
     this._appProcess = spawn(this.settings.command, this.settings.args, {
       stdio: ['inherit', 'inherit', 'inherit'],
@@ -106,7 +124,7 @@ class WebServer {
     });
   }
 
-  public route(url: URLMatch, handler: RouteHandlerCallback, options?: { times?: number }): void {
+  public async route(url: URLMatch, handler: RouteHandlerCallback, options?: { times?: number }): Promise<void> {
     this._routes.unshift(new RouteHandler(url, handler, options?.times))
   }
 }
