@@ -1,7 +1,7 @@
 import { test, expect } from 'playwright-ssr';
 
 test('should work', async ({ page, webServer }) => {
-  webServer.route('**/*', async route => {
+  await webServer.route('**/*', async route => {
     await route.fulfill({
       status: 200,
       json: [{ name: 'John' }, { name: 'Doe' }],
@@ -16,7 +16,7 @@ test('should work', async ({ page, webServer }) => {
 }); 
 
 test('should have all the request/response properties', async ({ page, webServer }) => {
-  webServer.route('**/*', async (route, request) => {
+  await webServer.route('**/*', async (route, request) => {
     expect(route.request()).toEqual(request);
     expect(request.method()).toBe('GET');
     expect(request.url()).toBe('https://demo.playwright.dev/api-mocking/api/v1/fruits')

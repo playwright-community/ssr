@@ -1,7 +1,7 @@
 {
     "name": "playwright-ssr",
     "version": "0.0.1",
-    "main": "src/index",
+    "main": "dist/index",
     "author": "Max Schmitt",
     "license": "MIT",
     "dependencies": {

@@ -106,7 +106,7 @@ class WebServer {
     });
   }
 
-  public route(url: URLMatch, handler: RouteHandlerCallback, options?: { times?: number }): void {
+  public async route(url: URLMatch, handler: RouteHandlerCallback, options?: { times?: number }): Promise<void> {
     this._routes.unshift(new RouteHandler(url, handler, options?.times))
   }
 }
