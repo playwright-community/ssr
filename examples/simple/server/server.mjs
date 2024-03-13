@@ -35,6 +35,6 @@ const server = http.createServer(async (req, res) => {
   res.end("Not found")
 })
 
-server.listen(3000)
-console.log('(server.mjs): Listening on http://localhost:3000')
+server.listen(process.env.PORT)
+console.log(`(server.mjs): Listening on http://localhost:${process.env.PORT}`)
 process.on('SIGINT', () => server.close());

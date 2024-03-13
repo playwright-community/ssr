@@ -56,6 +56,7 @@ class WebServer {
         ...process.env,
         NODE_OPTIONS: (process.env.NODE_OPTIONS ?? '') + ` --require ${path.join(__dirname, 'injected.js')}`,
         PW_INTERCEPTOR_PORT: this._resolver.port().toString(),
+        PORT: (3000 + test.info().parallelIndex).toString(),
       },
       shell: true,
       cwd: this.settings.cwd,
