@@ -113,7 +113,7 @@ class WebServer {
 
 class RouteImpl implements Route {
   private _handlingPromise: any | null = null;
-  constructor(private readonly _request: RequestImpl) {}
+  constructor(private readonly _request: RequestImpl) { }
   abort(errorCode?: string | undefined): Promise<void> {
     throw new Error('Method not implemented.');
   }
@@ -126,15 +126,25 @@ class RouteImpl implements Route {
     // @ts-ignore
     console.log('_innerContinue', request.requestId)
     try {
-    this._request._request.respondWith(await fetch(new Request(options?.url ?? request.url(), {
-      headers: options?.headers ?? request.headers(),
-      method: options?.method ?? request.method(),
-      body: options?.postData ?? request.postDataBuffer(),
-    })));
-   } catch (error) {
-    // @ts-ignore
-    console.log('error', error, request.requestId)
-   }
+      const response = await fetch(new Request(options?.url ?? request.url(), {
+        headers: options?.headers ?? request.headers(),
+        method: options?.method ?? request.method(),
+        body: options?.postData ?? request.postDataBuffer(),
+      })) as Response;
+      // Fetch still returns the original Content-Encoding, so we need to remove it.
+      const headers = new Headers(response.headers);
+      headers.delete('Content-Encoding');
+      // A Response is immutable, so we need to create a new one.
+      const newResponse = new Response(response.body, {
+        status: response.status,
+        statusText: response.statusText,
+        headers,
+      });
+      this._request._request.respondWith(newResponse);
+    } catch (error) {
+      // @ts-ignore
+      console.log('error', error, request.requestId)
+    }
   }
 
   fallback(options?: { headers?: { [key: string]: string; } | undefined; method?: string | undefined; postData?: any; url?: string | undefined; } | undefined): Promise<void> {
@@ -160,10 +170,10 @@ class RouteImpl implements Route {
       if (options?.response)
         throw new Error('Not implemented');
       this._request._request.respondWith(new Response(body, {
-          headers,
-          status: options?.status || 200,
-          statusText: options?.status ? 'OK' : 'Not Found',
-        }))
+        headers,
+        status: options?.status || 200,
+        statusText: options?.status ? 'OK' : 'Not Found',
+      }))
     });
   }
 
@@ -198,13 +208,13 @@ class RouteImpl implements Route {
   }
 }
 class RequestImpl implements PWRequest {
-  private constructor(public readonly _request: InteractiveRequest, private readonly _requestPayload: ArrayBuffer) {}
+  private constructor(public readonly _request: InteractiveRequest, private readonly _requestPayload: ArrayBuffer) { }
 
   static async create(request: InteractiveRequest): Promise<RequestImpl> {
     const pwRequest = new RequestImpl(request, await request.arrayBuffer());
     return pwRequest;
   }
-  
+
   async allHeaders(): Promise<{ [key: string]: string; }> {
     return this.headers();
   }
