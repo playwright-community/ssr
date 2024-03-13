@@ -1,6 +1,5 @@
 import { defineConfig, devices } from '@playwright/test';
 import { WorkerConfigOptions } from '../../src/index'
-import path from 'path';
 /**
  * Read environment variables from file.
  * https://github.com/motdotla/dotenv
@@ -41,7 +40,7 @@ export default defineConfig<WorkerConfigOptions>({
           command: 'npm',
           args: ['run', 'dev'],
           url: 'http://localhost:3000',
-          cwd: path.join(__dirname, 'next-app'),
+          cwd: __dirname,
         }
       },
     },
