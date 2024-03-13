@@ -1,0 +1,17 @@
+{
+    "name": "playwright-ssr",
+    "version": "0.0.1",
+    "main": "src/index",
+    "author": "Max Schmitt",
+    "license": "MIT",
+    "dependencies": {
+      "wait-on": "^7.2.0"
+    },
+    "scripts": {
+      "test": "playwright test"
+    },
+    "workspaces": [
+      "packages/*"
+    ]
+  }
+  

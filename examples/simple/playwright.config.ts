@@ -1,5 +1,5 @@
 import { defineConfig, devices } from '@playwright/test';
-import { WorkerConfigOptions } from '../../src/index'
+import type { WorkerConfigOptions } from 'playwright-ssr'
 import path from 'path';
 /**
  * Read environment variables from file.

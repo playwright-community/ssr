@@ -11,11 +11,10 @@
     "esbuild": "^0.20.1",
     "typescript": "^5.4.2"
   },
-  "dependencies": {
-    "wait-on": "^7.2.0"
-  },
   "scripts": {
-    "build": "esbuild src/index.ts --platform=node --outfile=dist/index.js --sourcemap --format=cjs",
     "test": "playwright test"
-  }
+  },
+  "workspaces": [
+    "packages/*"
+  ]
 }

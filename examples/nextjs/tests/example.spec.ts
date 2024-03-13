@@ -1,4 +1,4 @@
-import { test, expect } from '../../../src/index';
+import { test, expect } from 'playwright-ssr';
 
 test('my test', async ({ page, webServer }) => {
   webServer.route('**/*', async route => {
