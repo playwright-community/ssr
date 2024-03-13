@@ -10,6 +10,7 @@ import { test as base } from '@playwright/test'
 import { spawn } from 'node:child_process';
 import waitOn from 'wait-on';
 import path from 'path'
+// @ts-ignore
 import { RemoteHttpResolverOverWS } from "../third_party/interceptors";
 
 export type WorkerConfigOptions = {
@@ -49,6 +50,7 @@ class WebServer {
       port: 0,
     })
     this._resolver.apply()
+    // @ts-ignore
     this._resolver.on('request', async ({ request, requestId }) => this._onRequest(request, requestId))
     this._appProcess = spawn(this.settings.command, this.settings.args, {
       stdio: ['inherit', 'inherit', 'inherit'],

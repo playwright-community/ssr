@@ -18,6 +18,7 @@ jobs:
       run: |
         npm ci
         bash third_party/sync.sh
+        npm run build --workspaces
     - name: Install Playwright browsers
       run: npx playwright install --with-deps chromium
     - name: Test
