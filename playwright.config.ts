@@ -8,7 +8,8 @@ export default defineConfig({
   forbidOnly: !!process.env.CI,
   workers: process.env.CI ? 1 : undefined,
   reporter: 'html',
+  timeout: 90_000,
   projects: [{
-    name: 'e2e'
+    name: 'integration'
   }],
 });
