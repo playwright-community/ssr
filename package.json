@@ -15,6 +15,7 @@
     "wait-on": "^7.2.0"
   },
   "scripts": {
-    "build": "esbuild src/index.ts --platform=node --outfile=dist/index.js --sourcemap --format=cjs"
+    "build": "esbuild src/index.ts --platform=node --outfile=dist/index.js --sourcemap --format=cjs",
+    "test": "playwright test"
   }
 }

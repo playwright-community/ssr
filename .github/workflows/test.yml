@@ -14,7 +14,9 @@ jobs:
       with:
         node-version: 20
         cache: 'npm'
-    - name: npm install, build, and test
+    - name: Install
       run: |
         npm ci
         bash third_party/sync.sh
+    - name: Test
+      run: npm run test
