@@ -5,7 +5,13 @@ This project is experimental, we are actively looking for the feedback based on 
 
 ## Usage
 
-### 1. Have a WebServer per worker (project):
+### 1. Install the package
+
+```bash
+npm install -D playwright-ssr
+```
+
+### 2. Have a WebServer per worker (project):
 
 ```ts
 import { defineConfig, devices } from '@playwright/test';
@@ -29,7 +35,7 @@ export default defineConfig<WorkerConfigOptions>({
 });
 ```
 
-### 2. Use the `webServer` fixture inside the tests
+### 3. Use the `webServer` fixture inside the tests
 
 ```ts
 import { test, expect } from 'playwright-ssr';
