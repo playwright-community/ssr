@@ -18,5 +18,7 @@ jobs:
       run: |
         npm ci
         bash third_party/sync.sh
+    - name: Install Playwrihgt browsers
+      run: npx playwright install --with-deps
     - name: Test
       run: npm run test
