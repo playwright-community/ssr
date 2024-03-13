@@ -3,6 +3,10 @@
 > [!WARNING]
 This project is experimental, we are actively looking for the feedback based on your scenarios.
 
+## Motivation
+
+Playwright's networking interception works great for mocking requests/responses inside the Browser. Modern Meta-Frameworks like Remix, Next, Nuxt etc. often make requests from the backend. This project aims to explore ways on how to solve this by enabling mocking capabilities, like in Playwright for server side requests.
+
 ## Usage
 
 ### 1. Install the package
@@ -54,3 +58,7 @@ test('my test', async ({ page, webServer }) => {
   ])
 });
 ```
+
+## Acknowledgments
+
+[MSW Interceptors](https://github.com/mswjs/interceptors/) - a Low-level network interception library.
