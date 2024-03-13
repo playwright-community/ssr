@@ -56,9 +56,14 @@ class WebServer {
         ...process.env,
         NODE_OPTIONS: (process.env.NODE_OPTIONS ?? '') + ` --require ${path.join(__dirname, 'injected.js')}`,
         PW_INTERCEPTOR_PORT: this._resolver.port().toString(),
+        PORT: (3000 + test.info().parallelIndex).toString(),
       },
       shell: true,
       cwd: this.settings.cwd,
+      // On non-windows platforms, `detached: true` makes child process a leader of a new
+      // process group, making it possible to kill child process tree with `.kill(-pid)` command.
+      // @see https://nodejs.org/api/child_process.html#child_process_options_detached
+      detached: process.platform !== 'win32',
     })
     if (this.settings.url) {
       await waitOn({
@@ -92,7 +97,12 @@ class WebServer {
         return resolve();
       this._appProcess.on('exit', () => resolve())
       this._appProcess.on('error', reject)
-      this._appProcess.kill()
+      // kill whole process tree
+      if (process.platform === 'win32') {
+        spawn('taskkill', ['/pid', this._appProcess.pid!.toString(), '/T', '/F'])
+      } else {
+        process.kill(-this._appProcess.pid!)
+      }
     });
   }
 
