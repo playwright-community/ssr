@@ -7,7 +7,7 @@ test('should work', async ({ page, webServer }) => {
       json: [{ name: 'John' }, { name: 'Doe' }],
     })
   });
-  await page.goto("http://localhost:3000")
+  await page.goto("/")
   await page.getByRole('button', { name: 'Fetch Fruits' }).click()
   await expect(page.getByRole('listitem')).toHaveText([
     'John',
@@ -29,7 +29,7 @@ test('should have all the request/response properties', async ({ page, webServer
       json: [{ name: 'John' }, { name: 'Doe' }],
     })
   });
-  await page.goto("http://localhost:3000")
+  await page.goto("/")
   await page.getByRole('button', { name: 'Fetch Fruits' }).click()
   await expect(page.getByRole('listitem')).toHaveText([
     'John',

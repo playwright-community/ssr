@@ -37,6 +37,7 @@ export default defineConfig<WorkerConfigOptions>({
       name: 'chromium',
       use: {
         ...devices['Desktop Chrome'],
+        baseURL: 'http://localhost:5173',
         webServer: {
           command: 'npm',
           args: ['run', 'dev'],
