@@ -1,0 +1,23 @@
+---
+const response = await fetch('https://demo.playwright.dev/api-mocking/api/v1/fruits?1', { cache: 'no-cache' });
+const fruits = await response.json() as any[];
+---
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="viewport" content="width=device-width" />
+		<meta name="generator" content={Astro.generator} />
+		<title>Astro</title>
+	</head>
+	<body>
+		<h1>Hello from Astro</h1>
+		<h2>Fruits</h1>
+		<ul id="fruits">
+			{fruits.map((fruit) => (
+				<li key={fruit.id}>{fruit.name}</li>
+			))}
+		</ul>
+	</body>
+</html>
