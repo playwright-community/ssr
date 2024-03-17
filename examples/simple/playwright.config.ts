@@ -37,6 +37,7 @@ export default defineConfig<WorkerConfigOptions>({
       name: 'chromium',
       use: {
         ...devices['Desktop Chrome'],
+        baseURL: 'http://localhost:3000',
         webServer: {
           command: 'node',
           args: [path.join(__dirname, 'server', 'server.mjs')],

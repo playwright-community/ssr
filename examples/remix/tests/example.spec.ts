@@ -7,7 +7,7 @@ test('my test', async ({ page, webServer }) => {
       json: [{ id: 1, name: 'John' }, { id: 2, name: 'Doe' }],
     })
   });
-  await page.goto("http://localhost:5173")
+  await page.goto("/")
   await expect(page.getByRole('listitem')).toHaveText([
     'John',
     'Doe',
