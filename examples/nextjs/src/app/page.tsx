@@ -12,9 +12,6 @@ export default async function FruitsPage() {
           <li key={fruit.id}>{fruit.name}</li>
         ))}
       </ul>
-      <span>
-        Rendered on the server1 {process.platform} x {process.arch}.
-      </span>
     </div>
   );
 }
