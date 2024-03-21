@@ -9,7 +9,8 @@
     },
     "scripts": {
       "test": "playwright test",
-      "build": "tsc"
+      "build": "tsc",
+      "dev": "tsc -w"
     },
     "workspaces": [
       "packages/*"
